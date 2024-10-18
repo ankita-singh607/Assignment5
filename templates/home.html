@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering Counseling Portal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            font-size: 18px;
+            color: #666;
+        }
+        select, textarea {
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 300px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .question-container {
+            display: none; /* Initially hidden */
+        }
+    </style>
+    <script>
+        function showQuestions() {
+            const branchSelect = document.getElementById("branch-select");
+            const questionContainer = document.getElementById("question-container");
+            const questionSelect = document.getElementById("question-select");
+            const selectedBranch = branchSelect.value;
+
+            // Clear previous questions
+            questionSelect.innerHTML = "";
+
+            // Populate questions based on the selected branch
+
+            // Populate the dropdown with questions
+            questions.forEach(question => {
+                const option = document.createElement("option");
+                option.value = question;
+                option.textContent = question;
+                questionSelect.appendChild(option);
+            });
+
+            // Show the question container if there are questions
+            questionContainer.style.display = questions.length > 0 ? "block" : "none";
+        }
+    </script>
+</head>
+<body>
+    <h1>Welcome to the Engineering Counseling Portal</h1>
+    <p>Select your branch to get relevant questions!</p>
+
+    <!-- Form for submitting questions -->
+    <form action="/get_answer" method="POST">
+        <label for="branch-select">Choose your branch:</label>
+        <select id="branch-select" name="branch" onchange="showQuestions()">
+            <option value="">--Select a branch--</option>
+            <option value="CSE">Computer Science Engineering (CSE)</option>
+            <option value="ECE">Electronics and Communication Engineering (ECE)</option>
+            <option value="ME">Mechanical Engineering (ME)</option>
+            <option value="CE">Civil Engineering (CE)</option>
+        </select>
+
+        <div id="question-container" class="question-container">
+            <label for="question-select">Select a question:</label>
+            <select id="question-select" name="question">
+                <!-- Questions will be populated here -->
+            </select>
+        </div>
+
+        <br>
+        <textarea id="user-question" name="user-question" rows="4" cols="50" placeholder="You can also type your own question here..."></textarea>
+        <br>
+        <button type="submit">Get Answer</button>
+    </form>
+</body>
+</html>
+
