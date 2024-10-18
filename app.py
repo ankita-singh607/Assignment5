@@ -35,6 +35,8 @@ def get_answer(question):
     return "Focus on your studies, prepare a time table and ask doubts"
   elif "custom" in question:
     return "Your custom question will be reviewed, and you'll get a response shortly."
+  elif: "Project" in question:
+    return "projects on gates,  xor-gate, and-gate"
   else:
     return "I'm not sure, but you can ask your professor or career counselor for detailed advice."
 
